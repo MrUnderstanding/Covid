@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Log in</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='https://pro.fontawesome.com/releases/v5.12.0/css/all.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css'>
+
+  
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+	<script src="jquery.js"></script>
+</head>
+
+<body>
+    <!-- Containter for the log 
+    in form -->
+
+    <div id="loginDiv">
+
+
+        <!-- <form action="checkuser.php" method="POST"> -->
+        <form id="loginForm">
+            <p>Please enter your username and password to proceed.</p>
+            <label for="nameLogin">Username:</label>
+            <input type="text" name="Username" id="Username" required><br>
+
+            <label for="passwordLogin">Password:</label>
+            <input type="password" name="Password" id="Password" required><br>
+            <button name="submit" id="loginButton" onclick="return login()">Submit</button>
+            <!-- Calls the submitLogin function -->
+
+        </form>
+    </div>
+    <script>
+        function login() {
+            const username = document.getElementById('Username').value;
+            const password = document.getElementById('Password').value;
+            
+            /*check if the user is in the database*/
+            $.post("checkuser.php", $("#loginForm").serialize(), function (data) {              
+                console.log(data);
+                if (data == '1') {
+                    document.getElementById("Username").style.backgroundColor="";
+                    document.getElementById("Password").style.backgroundColor="";
+                    window.location = 'main.php';
+                } else {
+                    document.getElementById("Username").style.backgroundColor="#FFCCCC";
+                    document.getElementById("Password").style.backgroundColor="#FFCCCC";
+                    alert('Invalid credentials!!!!!!!!!!');
+                }
+            });
+            
+            return false;
+        }
+
+
+
+    </script>
+</body>
+
+</html>
