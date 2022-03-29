@@ -1,2 +1,1 @@
-# Covid Vaccination Tracker
-# Updates & Retrieves patient information 
+# Covid-Vaccination-Tracker
